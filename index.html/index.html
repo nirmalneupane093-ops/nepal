@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unemployed.np | AI World Unemployment</title>
+
+<!-- Google Fonts & Chart.js -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <script src="main.js"></script>
+
+<!-- FLOATING PARTICLES -->
+<canvas id="particles" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;"></canvas>
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="loginModal">
+  <div class="loginBox">
+    <span class="closeModal" onclick="closeLogin()">&times;</span>
+    <h2>🔐 Access Global Data</h2>
+    <p style="color:#ccc;margin-bottom:25px;">Login to unlock interactive world unemployment analytics</p>
+    <input type="text" id="username" placeholder="👤 Username" value="student">
+    <input type="password" id="password" placeholder="🔑 Password" value="unemployed2026">
+    <button class="loginBtn" onclick="loginUser()">🚀 Enter Data Portal</button>
+    <p style="color:#88aaff;margin-top:20px;font-size:0.9rem;">Demo: student / unemployed2026</p>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo"><span>unemployed</span>.np</div>
+  <ul>
+    <li><a onclick="showPage('home')">Home</a></li>
+    <li><a onclick="showPage('about')">About</a></li>
+    <li><a onclick="showPage('skills')">Skills</a></li>
+    <li><a onclick="showPage('team')">Team</a></li>
+    <li><a onclick="checkAuthAndShow('world')">🌍 World Data <span id="lockIcon" style="display:none;">🔒</span></a></li>
+    <li><a onclick="showPage('contact')">Contact</a></li>
+  </ul>
+  <div id="authSection">
+    <button class="authBtn" id="loginBtn" onclick="showLogin()">🔐 Login</button>
+    <div id="userInfo" class="userInfo" style="display:none;">
+      <div style="width:40px;height:40px;background:linear-gradient(135deg,#a64dff,#00ffe0);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;">👤</div>
+      <span id="userName"></span>
+      <button class="authBtn" onclick="logout()" style="padding:8px 15px;font-size:0.9rem;">Logout</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="page active">
+  <div class="hero">
+    <h1><span style="display:block;font-size:0.7em;margin-top:10px;">Global Unemployment Awareness</span></h1>
+    <p>🔐 <strong>Login</strong> to access interactive global unemployment data & AI predictions</p>
+    <div class="counter" id="globalCounter">0 M</div>
+    <button class="authBtn" style="font-size:1.2rem;padding:18px 35px;margin-top:30px;" onclick="showLogin()">🚀 Unlock Data Portal</button>
+  </div>
+</section>
+
+<!-- ABOUT (Public) -->
+<section id="about" class="page">
+  <h2>What is Unemployment?</h2>
+  <div class="card" style="max-width:800px;margin:0 auto 40px;">
+    <p style="font-size:1.1rem;line-height:1.9;color:#ddd;">Unemployment occurs when people who are willing and able to work cannot find jobs. It is one of the most important indicators of a country's economic performance and social well-being.</p>
+  </div>
+
+  <h2>Main Reasons</h2>
+  <div class="grid">
+    <div class="card">📉 <strong>Economic Recession</strong><br>Business slowdowns reduce hiring</div>
+    <div class="card">🤖 <strong>Automation & AI</strong><br>Jobs replaced by technology</div>
+    <div class="card">🎓 <strong>Lack of Skills</strong><br>Mismatch between skills & jobs</div>
+    <div class="card">📈 <strong>Population Growth</strong><br>More workers than jobs</div>
+    <div class="card">🌍 <strong>Globalization</strong><br>Jobs moving offshore</div>
+    <div class="card">🏭 <strong>Seasonal Jobs</strong><br>Temporary employment cycles</div>
+  </div>
+</section>
+
+<!-- SKILLS (Public) -->
+<section id="skills" class="page">
+  <h2>Our Technical Skills</h2>
+  <div class="grid">
+    <div class="card"><h3>HTML5 & CSS3</h3>Advanced Web Layouts & Animations</div>
+    <div class="card"><h3>JavaScript ES6+</h3>Interactive Charts & Dynamic UI</div>
+    <div class="card"><h3>Chart.js & D3</h3>Professional Data Visualization</div>
+    <div class="card"><h3>AI/ML Concepts</h3>Trend Prediction Algorithms</div>
+  </div>
+</section>
+
+<!-- TEAM (Public) -->
+<section id="team" class="page">
+  <h2>Our Team Members</h2>
+  <p style="max-width:800px;margin:0 auto 40px;font-size:1.1rem;">We are a group of dedicated Grade 11 Computer Science students at New Horizon EBS, Butwal. Each member brings unique skills and together we aim to create impactful software solutions.</p>
+  <div class="grid">
+    <div class="card"><h3>Nirmal Neupane</h3><span style="color:#00ffe0;"></span><br>JUST A STUDENT</div>
+    <div class="card"><h3>Anubhav Pun</h3><span style="color:#a64dff;"></span><br>JUST A STUDENT</div>
+    <div class="card"><h3>Sujit Khanal</h3><span style="color:#ff1e1e;"></span><br>JUST A STUDENT </div>
+    <div class="card"><h3>Ajit Thapa</h3><span style="color:#00ffe0;"></span><br>JUST A STUDENT </div>
+    <div class="card"><h3>Prabesh Bhandari</h3><span style="color:#ffaa00;"></span><br>JUST A STUDENT</div>
+    <div class="card"><h3>Siddharth Aryal</h3><span style="color:#a64dff;"></span><br>JUST A STUDENT</div>
+<div class="card"><h3>Ankit Poudel </h3><span style="color:#a64dff;"></span><br>JUST A STUDENT</div>
+  </div>
+</section>
+
+<!-- WORLD DATA (PROTECTED) -->
+<section id="world" class="page protected">
+  <div class="locked" id="lockedContent">
+    <div style="text-align:center;padding:100px 20px;">
+      <div class="lockIcon">🔒</div>
+      <h1 style="font-size:3rem;color:#ff1e1e;margin-bottom:20px;">Data Portal Locked</h1>
+      <p style="font-size:1.3rem;color:#ccc;margin-bottom:40px;">Login required to access global unemployment analytics</p>
+      <button class="authBtn" style="font-size:1.2rem;padding:20px 40px;" onclick="showLogin()">🔐 Unlock Analytics</button>
+    </div>
+  </div>
+  
+  <div id="unlockedContent" style="display:none;">
+    <h2>🌍 Global Unemployment Analytics</h2>
+    <p style="text-align:center;max-width:800px;margin:0 auto 30px;font-size:1.1rem;">Interactive charts showing Past, Present, and AI-Predicted Future unemployment trends (population in millions)</p>
+
+    <!-- TABS -->
+    <div style="text-align:center;margin-bottom:30px;">
+      <button class="tabBtn activeTab" onclick="changeDataset('past', this)">📈 Past</button>
+      <button class="tabBtn" onclick="changeDataset('present', this)">📊 Present</button>
+      <button class="tabBtn" onclick="changeDataset('future', this)">🔮 Future</button>
+    </div>
+
+    <!-- TIME CHART -->
+    <canvas id="timeChart" style="max-width:900px;margin:40px auto;background:rgba(255,255,255,0.05);padding:20px;border-radius:20px;"></canvas>
+
+    <!-- COUNTRY FILTERS -->
+    <h2 style="text-align:center;">Unemployed Population by Country</h2>
+    <div style="max-width:900px;margin:20px auto;text-align:center;">
+      <select id="regionFilter">
+        <option value="">🌐 All Regions</option>
+        <option value="Asia">🌏 Asia</option>
+        <option value="Europe">🇪🇺 Europe</option>
+        <option value="Africa">🇦🇫 Africa</option>
+        <option value="North America">🇺🇸 North America</option>
+        <option value="South America">🇧🇷 South America</option>
+        <option value="Oceania">🇦🇺 Oceania</option>
+      </select>
+      <input type="text" id="search" placeholder="🔍 Search country...">
+    </div>
+
+    <!-- BAR & PIE CHARTS -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:1400px;margin:40px auto;">
+      <div style="background:rgba(255,255,255,0.05);padding:25px;border-radius:20px;">
+        <canvas id="barChart" style="max-height:450px;"></canvas>
+      </div>
+      <div style="background:rgba(255,255,255,0.05);padding:25px;border-radius:20px;">
+        <canvas id="pieChart" style="max-height:450px;"></canvas>
+      </div>
+    </div>
+
+    <!-- TABLE -->
+    <table>
+      <thead>
+        <tr><th>🇺🇳 Country</th><th>👥 Unemployed (M)</th><th>🌍 Region</th><th>📊 Rating</th></tr>
+      </thead>
+      <tbody id="countryTable"></tbody>
+    </table>
+    <div style="text-align:center;color:#88aaff;font-size:1.1rem;margin-top:20px;font-style:italic;">
+      ✅ Welcome to the Data Portal! Data for educational & AI prediction purposes.
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT (Public) -->
+<section id="contact" class="page">
+  <h2>📬 Get In Touch</h2>
+  <div class="grid" style="max-width:800px;margin:0 auto;">
+    <div class="card" style="text-align:center;">
+      <h3>🌍 Project</h3>
+      <p>Global Unemployment Awareness Platform</p>
+    </div>
+    <div class="card" style="text-align:center;">
+      <h3>📧 Email</h3>
+      <p><strong>unemployednp@gmail.com</strong></p>
+    </div>
+    <div class="card" style="text-align:center;">
+      <h3>🏫 School</h3>
+      <p>New Horizon EBS, Butwal<br>Grade 11 Computer Science</p>
+    </div>
+    <div class="card" style="text-align:center;">
+      <h3>💻 Tech Stack</h3>
+      <p>HTML5 • CSS3 • JavaScript<br>Chart.js • AI Predictions</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+✦ Unemployed.np 2026 | AI World Unemployment Awareness Project ✦
+</footer>
+
+
+</body>
+</html>
